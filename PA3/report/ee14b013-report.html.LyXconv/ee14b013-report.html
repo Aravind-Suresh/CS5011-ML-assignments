@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="generator" content="http://www.nongnu.org/elyxer/"/>
+<meta name="create-date" content="2016-11-13"/>
+<link rel="stylesheet" href="http://elyxer.nongnu.org/lyx.css" type="text/css" media="all"/>
+<title>Introduction to Machine learning ( CS5011 )Programming assignment #3</title>
+</head>
+<body>
+<div id="globalWrapper">
+<h1 class="title">
+Introduction to Machine learning ( CS5011 )<br/>
+Programming assignment #3
+</h1>
+<h2 class="author">
+Aravind S<br/>
+EE14B013
+</h2>
+<h2 class="Date">
+14th Nov. 2016
+</h2>
+<h1 class="Section">
+<a class="toc" name="toc-Section-1">1</a> Conversion
+</h1>
+<div class="Unindented">
+ARFF is a popular format for data storage which is compatible with many popular packages like Weka. It has 2 components, header and data.
+</div>
+<ul>
+<li>
+The header mentions the optional name and the data type of that feature. Here, the first two attributes in all datasets are numerical and the last attribute was categorical.
+</li>
+<li>
+The dataset is a 2-dimensional dataset with labels associated with every point.
+</li>
+
+</ul>
+<div class="Unindented">
+As usual, I standardized the data before usage, which resulted in better performance. This is to ensure that L2-norm is a proper distance measure. It assumes the same weight given to both the features. As a result, one feature should not dominate the other. Hence, standardizing makes sure L2-norm is a good distance measure.
+</div>
+<h1 class="Section">
+<a class="toc" name="toc-Section-2">2</a> Visualisation
+</h1>
+<div class="Unindented">
+The standardized datasets have been visualised below.
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-1"> </a><a class="Label" name="Figure-1"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="Aggregation.png" alt="figure Aggregation.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 1 Aggregation
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="Compound.png" alt="figure Compound.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 1 Compound
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-2"> </a><a class="Label" name="Figure-2"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="D31.png" alt="figure D31.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 2 D31
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="flame.png" alt="figure flame.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 2 Flames
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-3"> </a><a class="Label" name="Figure-3"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="jain.png" alt="figure jain.png" style="width: 226px; max-width: 566px; height: 164px; max-height: 411px;"/>
+
+</div>
+<div class="caption">
+Figure 3 Jain
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="pathbased.png" alt="figure pathbased.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 3 Path-based
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-4"> </a><a class="Label" name="Figure-4"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="R15.png" alt="figure R15.png" style="width: 226px; max-width: 566px; height: 164px; max-height: 411px;"/>
+
+</div>
+<div class="caption">
+Figure 4 R15
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="spiral.png" alt="figure spiral.png" style="width: 226px; max-width: 566px; height: 153px; max-height: 383px;"/>
+
+</div>
+<div class="caption">
+Figure 4 Spiral
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--1"></a>Which algorithm to choose?
+</h2>
+<ul>
+<li>
+K-means clustering works well for datasets with convex clusters.
+</li>
+<li>
+Hierarchical clustering ( HC ) with complete link meta-distance forces the obtained clusters to be spherical in nature. As a result, this works well for datasets with convex clusters.
+</li>
+<li>
+DBSCAN obtains non-convex clusters, but it requires good separation between two clusters ( otherwise the optimal (min pts, <span class="formula"><i>ϵ</i></span>) is difficult to obtain ).
+</li>
+<li>
+Hierarchical clustering with single link meta-distance also obtains non-convex clusters. It is better than DBSCAN as we can specify the number of clusters needed, and hence more robust to noise in the datasets.
+</li>
+
+</ul>
+<div class="Unindented">
+Having known this, we can obtain a qualitative estimate about which clustering algorithm performs well on the given dataset.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--1"></a>Aggregation
+</h3>
+<div class="Unindented">
+Since the points are nearly convex, K-means and HC-complete will work well. HC-single will work well except for the region between the clusters, which may get misclassified. DBSCAN works provided we have a high value for minpoints. This prevents the boundary points getting classified as outliers.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--2"></a>Compound
+</h3>
+<div class="Unindented">
+K-means and HC-complete will not work due to non-convex nature of certain clusters. DBSCAN will work for certain value of min-pts but might merge the points on the right ( the non-convex cluster points and the less-densely placed points surrounding it ). HC-single will also work as it obtains non-convex clusters, but might merge the above mentioned clusters.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--3"></a>D31
+</h3>
+<div class="Unindented">
+Since, the clusters are convex, K-means and HC-complete will work well. But results might be slightly different due to noisy points near the cluster boundary. DBSCAN will not work as the clusters are not well separated and there are a lot of noisy/overlapping points. Similarly, HC-single will suffer. But its output might be slightly better as we can specify the number of clusters we want, which can give a better partition between clusters.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--4"></a>Flames
+</h3>
+<div class="Unindented">
+K-means and HC-complete will not work due to non-convex clusters. Since the clusters are almost of uniform density and are well separated, DBSCAN and HC-single will work. It is necessary to choose the appropriate minpoints for DBSCAN.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--5"></a>Jain
+</h3>
+<div class="Unindented">
+K-means and HC-complete will not work well, as the clusters are not convex. Since, the clusters are well separated, DBSCAN and HC-single will work well. The performance here will be better than Flames as the clusters are better separated.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--6"></a>Path-based
+</h3>
+<div class="Unindented">
+Due to non-convex nature of clusters, K-means and HC-complete will not perform well. On the other hand, HC-single and DBSCAN will perform well on this dataset. Choosing wrong values of <span class="formula"><i>ϵ</i></span> for DBSCAN might result in misclassification near boundary points. On the other hand, HC-single will perform better as there are no parameters to tune in it, except the number of clusters.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--7"></a>R15
+</h3>
+<div class="Unindented">
+The dataset has convex clusters and are well separated ( unlike D31 ). So, all algorithms will work well.
+</div>
+<h3 class="Subsubsection-">
+<a class="toc" name="toc-Subsubsection--8"></a>Spiral
+</h3>
+<div class="Unindented">
+Owing to the non-convex nature of clusters, DBSCAN and HC-single will work well for this dataset. K-means and HC-complete will not perform well on this dataset.
+</div>
+<h1 class="Section">
+<a class="toc" name="toc-Section-3">3</a> Performance of K-means on R15 dataset
+</h1>
+<div class="Unindented">
+For <span class="formula"><i>k</i> = 8</span>, the cluster purity is <span class="formula">0.533</span>. The assigned clusters is shown below.<br/>
+<img class="embedded" src="R15-Kmeans-8.jpg" alt="figure R15-Kmeans-8.jpg" style="max-width: 341px; max-height: 211px;"/>
+<br/>
+<br/>
+As the cluster size increases, the purity increases as well. This is because, the clusters are becoming more and more skewed. Theoritically, the cluster purity is <span class="formula">1.0</span> if <span class="formula"><i>k</i> = <i>n</i></span>, where <span class="formula"><i>k</i></span> is the number of clusters and <span class="formula"><i>n</i></span> is the number of data points.<br/>
+<br/>
+
+</div>
+<div class="Indented">
+<img class="embedded" src="plot-cluster-purity-vs-k.png" alt="figure plot-cluster-purity-vs-k.png" style="width: 560px; max-width: 800px; height: 420px; max-height: 600px;"/>
+
+</div>
+<h1 class="Section">
+<a class="toc" name="toc-Section-4">4</a> Performance of DBSCAN on the Jain dataset
+</h1>
+<div class="Unindented">
+As we all know, DBSCAN is very sensitive to parameters <span class="formula">(<i>minpoints</i>, <i>ϵ</i>)</span>. Wrong choices of the parameters gives horrible clustering results. In order to obtain the correct choice of the parameters, I resolved to a grid-search over the <span class="formula">(<i>minpoints</i>, <i>ϵ</i>)</span> space. I observed that the variation of cluster-purity with the parameters is not predictable. So, I am reporting all the results observed.<br/>
+<br/>
+I varied <span class="formula"><i>ϵ</i></span> from <span class="formula">0</span> to <span class="formula">1</span> in steps of <span class="formula">0.05</span> and <span class="formula"><i>minpoints</i></span> from <span class="formula">1</span> to <span class="formula">20</span> in steps of <span class="formula">1</span>. Once an optimal range for <span class="formula"><i>ϵ</i></span> and <span class="formula"><i>minpoints</i></span> are obtained, the values are finetuned to get best performance. The following observations were made.
+</div>
+<ul>
+<li>
+For large values of <span class="formula"><i>ϵ</i></span>, DBSCAN identifies a large number of core points and as a result classifies the entire data into a single cluster. This resulted in a cluster purity of around <span class="formula">0.74</span>. The visualisation shown below was obtained for <span class="formula"><i>minpoints</i> = 11</span> and <span class="formula"><i>ϵ</i> = 0.9</span>. Note, no points were flagged as OUTLIERS.<br/>
+<br/>
+<img class="embedded" src="jain-0.9-11-0.74.png" alt="figure jain-0.9-11-0.74.png" style="max-width: 341px; max-height: 183px;"/>
+
+</li>
+<li>
+For large values of <span class="formula"><i>minpoints</i>, </span> less number of core points are identified and hence, many points are flagged as NOISE.
+</li>
+<li>
+Excluding the above configurations, the reasonable range of values are <span class="formula"><i>minpoints</i></span> between <span class="formula">11</span> and <span class="formula">17</span> and <span class="formula"><i>ϵ</i></span> around <span class="formula">0.1</span>.
+</li>
+<li>
+The best purity for <span class="formula">2</span> clusters was obtained, when <span class="formula"><i>ϵ</i> = 0.08</span> and <span class="formula"><i>minpoints</i> = 2</span>, for which the purity was <span class="formula">0.9785</span>. This resulted in <span class="formula">8</span> outliers and the remaining clustered. The results are visualised below.<br/>
+<br/>
+<img class="embedded" src="jain-0.08-2-0.9785.png" alt="figure jain-0.08-2-0.9785.png" style="max-width: 341px; max-height: 183px;"/>
+
+</li>
+
+</ul>
+<h1 class="Section">
+<a class="toc" name="toc-Section-5">5</a> DBSCAN Vs Hierarchical clustering on Path-based, Spiral and Flames datasets
+</h1>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--2"></a>DBSCAN
+</h2>
+<div class="Unindented">
+To obtain the optimal values of <span class="formula"><i>ϵ</i></span> and <span class="formula"><i>minpoints</i></span>, grid-search is followed. I varied <span class="formula"><i>ϵ</i></span> from <span class="formula">0</span> to <span class="formula">1</span> in steps of <span class="formula">0.05</span> and <span class="formula"><i>minpoints</i></span> from <span class="formula">1</span> to <span class="formula">20</span> in steps of <span class="formula">1</span>. Once an optimal range for <span class="formula"><i>ϵ</i></span> and <span class="formula"><i>minpoints</i></span> are obtained, the values are finetuned to get best performance. The following observations were made.<br/>
+<br/>
+The rough range for <span class="formula"><i>ϵ</i></span> was around <span class="formula">0.1</span> and for <span class="formula"><i>minpoints</i></span>, it is <span class="formula">2</span> to <span class="formula">9</span>. The results are tabulated below.<br/>
+
+</div>
+<div class="Indented">
+<table>
+<tr>
+<td align="center" valign="top" colspan="7">
+Performance of DBSCAN on the Path-based, Spiral and Flames datasets
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+<b>Dataset</b>
+</td>
+<td align="center" valign="top">
+<b>Classes</b>
+</td>
+<td align="center" valign="top">
+<b>Epsilon <span class="formula"><i>ϵ</i></span></b>
+</td>
+<td align="center" valign="top">
+<b>Minpoints <span class="formula"><i>M</i></span></b>
+</td>
+<td align="center" valign="top">
+<b>Clusters</b>
+</td>
+<td align="center" valign="top">
+<b>Outliers</b>
+</td>
+<td align="center" valign="top">
+<b>Purity</b>
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Path-based
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+0.07
+</td>
+<td align="center" valign="top">
+9
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+107
+</td>
+<td align="center" valign="top">
+0.9933
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Spiral
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+0.1
+</td>
+<td align="center" valign="top">
+2
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+0
+</td>
+<td align="center" valign="top">
+1.0
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Flames
+</td>
+<td align="center" valign="top">
+2
+</td>
+<td align="center" valign="top">
+0.1
+</td>
+<td align="center" valign="top">
+9
+</td>
+<td align="center" valign="top">
+2
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+0.9875
+</td>
+
+</tr>
+
+</table>
+
+</div>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--3"></a>Hierarchical clustering
+</h2>
+<div class="Unindented">
+Weka supports a number of linkTypes like <b>single, complete, average, mean, centroid, ward, adjcomplete and neighbour_joining. </b>Generally for non-convex clusters, <b>ward </b>and <b>single</b> link types prove to be efficient in clustering.<br/>
+<br/>
+After experimenting with all possible link types, the results are summarised below.<br/>
+
+</div>
+<div class="Indented">
+<table>
+<tr>
+<td align="center" valign="top" colspan="4">
+Performance of Hierarchical clustering on the Path-based, Spiral and Flames datasets
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+<b>Dataset</b>
+</td>
+<td align="center" valign="top">
+<b>Clusters</b>
+</td>
+<td align="center" valign="top">
+<b>Link type</b>
+</td>
+<td align="center" valign="top">
+<b>Purity</b>
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Path-based
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+Ward
+</td>
+<td align="center" valign="top">
+0.7534
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Spiral
+</td>
+<td align="center" valign="top">
+3
+</td>
+<td align="center" valign="top">
+Single
+</td>
+<td align="center" valign="top">
+1.0
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+Flames
+</td>
+<td align="center" valign="top">
+2
+</td>
+<td align="center" valign="top">
+Ward
+</td>
+<td align="center" valign="top">
+1.0
+</td>
+
+</tr>
+
+</table>
+<br/>
+<br/>
+The above results are visualised below.
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-5"> </a><a class="Label" name="Figure-5"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="pathbased-dbs-0.07-9-0.9933.png" alt="figure pathbased-dbs-0.07-9-0.9933.png" style="width: 136px; max-width: 341px; height: 73px; max-height: 183px;"/>
+
+</div>
+<div class="caption">
+Figure 5 Path-based ( DBSCAN )
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="pathbased-hc-ward-0.7534.png" alt="figure pathbased-hc-ward-0.7534.png" style="width: 136px; max-width: 341px; height: 73px; max-height: 183px;"/>
+
+</div>
+<div class="caption">
+Figure 5 Path-based ( Hierarchical clustering )
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-6"> </a><a class="Label" name="Figure-6"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="spiral-dbs-0.1-2-1.0.png" alt="figure spiral-dbs-0.1-2-1.0.png" style="width: 136px; max-width: 341px; height: 73px; max-height: 183px;"/>
+
+</div>
+<div class="caption">
+Figure 6 Spiral ( DBSCAN )
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="spiral-hc-single-1.0.png" alt="figure spiral-hc-single-1.0.png" style="width: 136px; max-width: 341px; height: 73px; max-height: 183px;"/>
+
+</div>
+<div class="caption">
+Figure 6 Spiral ( Hierarchical clustering )
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="Indented">
+<div class="float">
+<a class="Label" name="Figure-7"> </a><a class="Label" name="Figure-7"> </a><div class="figure">
+<div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="flames-dbs-0.1-9-0.9875.png" alt="figure flames-dbs-0.1-9-0.9875.png" style="width: 136px; max-width: 341px; height: 84px; max-height: 211px;"/>
+
+</div>
+<div class="caption">
+Figure 7 Flames ( DBSCAN )
+</div>
+
+</div>
+<span class="hfill"> </span><div class="Frameless" style="width: 45%;">
+<div class="center">
+<img class="embedded" src="flames-hc-ward-1.0.png" alt="figure flames-hc-ward-1.0.png" style="width: 136px; max-width: 341px; height: 73px; max-height: 183px;"/>
+
+</div>
+<div class="caption">
+Figure 7 Flames ( Hierarchical clustering )
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<h1 class="Section">
+<a class="toc" name="toc-Section-6">6</a> Analysis of D31 dataset
+</h1>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--4"></a>K-means
+</h2>
+<div class="Unindented">
+The performance of K-means is tabulated below. We can observe that K-means successfully identifies the <span class="formula">32</span> clusters for <span class="formula"><i>k</i> = 32</span> with a cluster-purity of <span class="formula">0.879</span>. The purity increases as we increase <span class="formula"><i>k</i></span>. But, it saturates for large <span class="formula"><i>k</i></span>. For instance, beyond <span class="formula"><i>k</i> = 64</span>, the value of cluster-purity remains almost constant around <span class="formula">0.966</span>.<br/>
+<br/>
+
+</div>
+<div class="Indented">
+<table>
+<tr>
+<td align="center" valign="top" colspan="2">
+Variation of cluster-purity with k
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+No. of clusters <span class="formula"><i>k</i></span>
+</td>
+<td align="center" valign="top">
+Cluster purity
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+32
+</td>
+<td align="center" valign="top">
+0.879
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+40
+</td>
+<td align="center" valign="top">
+0.897
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+48
+</td>
+<td align="center" valign="top">
+0.957
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+56
+</td>
+<td align="center" valign="top">
+0.965
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+64
+</td>
+<td align="center" valign="top">
+0.967
+</td>
+
+</tr>
+<tr>
+<td align="center" valign="top">
+128
+</td>
+<td align="center" valign="top">
+0.966
+</td>
+
+</tr>
+
+</table>
+
+</div>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--5"></a>DBSCAN
+</h2>
+<div class="Unindented">
+We can observe that the clusters are not well separated. As a result, DBSCAN doesn’t perform well. I did a grid-search by varying <span class="formula"><i>ϵ</i></span> from <span class="formula">0</span> to <span class="formula">1</span> in steps of <span class="formula">0.05</span> and varying <span class="formula"><i>minpoints</i></span> from <span class="formula">1</span> to <span class="formula">20</span> in steps of <span class="formula">1</span>. As the clusters overlap, the number of clusters obtained is less. In all my trials, it doesn’t exceed <span class="formula">5</span>.<br/>
+<br/>
+The best cluster purity obtained was <span class="formula">0.1622</span> for <span class="formula"><i>ϵ</i> = 0.05</span> and <span class="formula"><i>minpoints</i> = 11</span>.
+</div>
+<h2 class="Subsection-">
+<a class="toc" name="toc-Subsection--6"></a>Hierarchical clustering
+</h2>
+<div class="Unindented">
+Using the Ward’s linkage with <span class="formula">32</span> clusters we get a cluster-purity of <span class="formula">0.9632</span>. It is visualised below.<br/>
+
+</div>
+<div class="Indented">
+<img class="embedded" src="d31-hc-ward.png" alt="figure d31-hc-ward.png" style="max-width: 341px; max-height: 183px;"/>
+
+</div>
+
+</div>
+</body>
+</html>

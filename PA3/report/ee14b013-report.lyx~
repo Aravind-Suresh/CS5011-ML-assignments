@@ -1,0 +1,2487 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Introduction to Machine learning ( CS5011 )
+\begin_inset Newline newline
+\end_inset
+
+Programming assignment #3
+\end_layout
+
+\begin_layout Author
+Aravind S
+\begin_inset Newline newline
+\end_inset
+
+EE14B013
+\end_layout
+
+\begin_layout Date
+14th Nov.
+ 2016
+\end_layout
+
+\begin_layout Section
+Data conversion
+\end_layout
+
+\begin_layout Standard
+ARFF is a popular format for data storage which is compatible with many
+ popular packages like Weka.
+ It has 2 components, header and data.
+\end_layout
+
+\begin_layout Itemize
+The header mentions the optional name and the data type of that feature.
+ Here, the first two attributes in all datasets are numerical and the last
+ attribute was categorical.
+\end_layout
+
+\begin_layout Itemize
+The dataset is a 2-dimensional dataset with labels associated with every
+ point.
+\end_layout
+
+\begin_layout Standard
+As usual, I standardized the data before usage, which resulted in better
+ performance.
+ This is to ensure that L2-norm is a proper distance measure.
+ It assumes the same weight given to both the features.
+ As a result, one feature should not dominate the other.
+ Hence, standardizing makes sure L2-norm is a good distance measure.
+\end_layout
+
+\begin_layout Section
+Visualisation
+\end_layout
+
+\begin_layout Standard
+The standardized datasets have been visualised below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/Aggregation.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aggregation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/Compound.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Compound
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/D31.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+D31
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/flame.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flames
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/jain.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Jain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/pathbased.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Path-based
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/R15.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+R15
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/plots/spiral.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spiral
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Which algorithm to choose?
+\end_layout
+
+\begin_layout Itemize
+K-means clustering works well for datasets with convex clusters.
+\end_layout
+
+\begin_layout Itemize
+Hierarchical clustering ( HC ) with complete link meta-distance forces the
+ obtained clusters to be spherical in nature.
+ As a result, this works well for datasets with convex clusters.
+\end_layout
+
+\begin_layout Itemize
+DBSCAN obtains non-convex clusters, but it requires good separation between
+ two clusters ( otherwise the optimal (min pts, 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+) is difficult to obtain ).
+\end_layout
+
+\begin_layout Itemize
+Hierarchical clustering with single link meta-distance also obtains non-convex
+ clusters.
+ It is better than DBSCAN as we can specify the number of clusters needed,
+ and hence more robust to noise in the datasets.
+\end_layout
+
+\begin_layout Standard
+Having known this, we can obtain a qualitative estimate about which clustering
+ algorithm performs well on the given dataset.
+\end_layout
+
+\begin_layout Subsubsection*
+Aggregation
+\end_layout
+
+\begin_layout Standard
+Since the points are nearly convex, K-means and HC-complete will work well.
+ HC-single will work well except for the region between the clusters, which
+ may get misclassified.
+ DBSCAN works provided we have a high value for minpoints.
+ This prevents the boundary points getting classified as outliers.
+\end_layout
+
+\begin_layout Subsubsection*
+Compound
+\end_layout
+
+\begin_layout Standard
+K-means and HC-complete will not work due to non-convex nature of certain
+ clusters.
+ DBSCAN will work for certain value of min-pts but might merge the points
+ on the right ( the non-convex cluster points and the less-densely placed
+ points surrounding it ).
+ HC-single will also work as it obtains non-convex clusters, but might merge
+ the above mentioned clusters.
+\end_layout
+
+\begin_layout Subsubsection*
+D31
+\end_layout
+
+\begin_layout Standard
+Since, the clusters are convex, K-means and HC-complete will work well.
+ But results might be slightly different due to noisy points near the cluster
+ boundary.
+ DBSCAN will not work as the clusters are not well separated and there are
+ a lot of noisy/overlapping points.
+ Similarly, HC-single will suffer.
+ But its output might be slightly better as we can specify the number of
+ clusters we want, which can give a better partition between clusters.
+\end_layout
+
+\begin_layout Subsubsection*
+Flames
+\end_layout
+
+\begin_layout Standard
+K-means and HC-complete will not work due to non-convex clusters.
+ Since the clusters are almost of uniform density and are well separated,
+ DBSCAN and HC-single will work.
+ It is necessary to choose the appropriate minpoints for DBSCAN.
+\end_layout
+
+\begin_layout Subsubsection*
+Jain
+\end_layout
+
+\begin_layout Standard
+K-means and HC-complete will not work well, as the clusters are not convex.
+ Since, the clusters are well separated, DBSCAN and HC-single will work
+ well.
+ The performance here will be better than Flames as the clusters are better
+ separated.
+\end_layout
+
+\begin_layout Subsubsection*
+Path-based
+\end_layout
+
+\begin_layout Standard
+Due to non-convex nature of clusters, K-means and HC-complete will not perform
+ well.
+ On the other hand, HC-single and DBSCAN will perform well on this dataset.
+ Choosing wrong values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ for DBSCAN might result in misclassification near boundary points.
+ On the other hand, HC-single will perform better as there are no parameters
+ to tune in it, except the number of clusters.
+\end_layout
+
+\begin_layout Subsubsection*
+R15
+\end_layout
+
+\begin_layout Standard
+The dataset has convex clusters and are well separated ( unlike D31 ).
+ So, all algorithms will work well.
+\end_layout
+
+\begin_layout Subsubsection*
+Spiral
+\end_layout
+
+\begin_layout Standard
+Owing to the non-convex nature of clusters, DBSCAN and HC-single will work
+ well for this dataset.
+ K-means and HC-complete will not perform well on this dataset.
+\end_layout
+
+\begin_layout Section
+Performance of K-means on R15 dataset
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $k=8$
+\end_inset
+
+, the cluster purity is 
+\begin_inset Formula $0.533$
+\end_inset
+
+.
+ The assigned clusters is shown below.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-c/R15-Kmeans-8.jpg
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As the cluster size increases, the purity increases as well.
+ This is because, the clusters are becoming more and more skewed.
+ Theoritically, the cluster purity is 
+\begin_inset Formula $1.0$
+\end_inset
+
+ if 
+\begin_inset Formula $k=n$
+\end_inset
+
+, where 
+\begin_inset Formula $k$
+\end_inset
+
+ is the number of clusters and 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of data points.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-c/plot-cluster-purity-vs-k.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Performance of DBSCAN on the Jain dataset
+\end_layout
+
+\begin_layout Standard
+As we all know, DBSCAN is very sensitive to parameters 
+\begin_inset Formula $(minpoints,\epsilon)$
+\end_inset
+
+.
+ Wrong choices of the parameters gives horrible clustering results.
+ In order to obtain the correct choice of the parameters, I resolved to
+ a grid-search over the 
+\begin_inset Formula $(minpoints,\epsilon)$
+\end_inset
+
+ space.
+ I observed that the variation of cluster-purity with the parameters is
+ not predictable.
+ So, I am reporting all the results observed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+I varied 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $0.05$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $20$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Once an optimal range for 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ are obtained, the values are finetuned to get best performance.
+ The following observations were made.
+\end_layout
+
+\begin_layout Itemize
+For large values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, DBSCAN identifies a large number of core points and as a result classifies
+ the entire data into a single cluster.
+ This resulted in a cluster purity of around 
+\begin_inset Formula $0.74$
+\end_inset
+
+.
+ The visualisation shown below was obtained for 
+\begin_inset Formula $minpoints=11$
+\end_inset
+
+ and 
+\begin_inset Formula $\epsilon=0.9$
+\end_inset
+
+.
+ Note, no points were flagged as OUTLIERS.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-d/jain-0.9-11-0.74.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+For large values of 
+\begin_inset Formula $minpoints,$
+\end_inset
+
+ less number of core points are identified and hence, many points are flagged
+ as NOISE.
+\end_layout
+
+\begin_layout Itemize
+Excluding the above configurations, the reasonable range of values are 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ between 
+\begin_inset Formula $11$
+\end_inset
+
+ and 
+\begin_inset Formula $17$
+\end_inset
+
+ and 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ around 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The best purity for 
+\begin_inset Formula $2$
+\end_inset
+
+ clusters was obtained, when 
+\begin_inset Formula $\epsilon=0.08$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints=2$
+\end_inset
+
+, for which the purity was 
+\begin_inset Formula $0.9785$
+\end_inset
+
+.
+ This resulted in 
+\begin_inset Formula $8$
+\end_inset
+
+ outliers and the remaining clustered.
+ The results are visualised below.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-d/jain-0.08-2-0.9785.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+DBSCAN Vs Hierarchical clustering on Path-based, Spiral and Flames datasets
+\end_layout
+
+\begin_layout Subsection*
+DBSCAN
+\end_layout
+
+\begin_layout Standard
+To obtain the optimal values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints$
+\end_inset
+
+, grid-search is followed.
+ I varied 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $0.05$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $20$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Once an optimal range for 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ are obtained, the values are finetuned to get best performance.
+ The following observations were made.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The rough range for 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ was around 
+\begin_inset Formula $0.1$
+\end_inset
+
+ and for 
+\begin_inset Formula $minpoints$
+\end_inset
+
+, it is 
+\begin_inset Formula $2$
+\end_inset
+
+ to 
+\begin_inset Formula $9$
+\end_inset
+
+.
+ The results are tabulated below.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Performance of DBSCAN on the Path-based, Spiral and Flames datasets
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Dataset
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Classes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Epsilon 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Minpoints 
+\begin_inset Formula $M$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Clusters
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Outliers
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Purity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Path-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+107
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9933
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spiral
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flames
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9875
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Hierarchical clustering
+\end_layout
+
+\begin_layout Standard
+Weka supports a number of linkTypes like 
+\series bold
+single, complete, average, mean, centroid, ward, adjcomplete 
+\series default
+and
+\series bold
+ neighbour_joining.
+ 
+\series default
+Generally for non-convex clusters, 
+\series bold
+ward 
+\series default
+and 
+\series bold
+single
+\series default
+ link types prove to be efficient in clustering.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+After experimenting with all possible link types, the results are summarised
+ below.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Performance of Hierarchical clustering on the Path-based, Spiral and Flames
+ datasets
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Dataset
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Clusters
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Link type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Purity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Path-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ward
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.7534
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spiral
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flames
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ward
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The above results are visualised below.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/pathbased-dbs-0.07-9-0.9933.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Path-based ( DBSCAN )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/pathbased-hc-ward-0.7534.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Path-based (Hierarchical clustering)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/spiral-dbs-0.1-2-1.0.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spiral ( DBSCAN )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/spiral-hc-single-1.0.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spiral ( Hierarchical clustering )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/flames-dbs-0.1-9-0.9875.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flames ( DBSCAN )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45text%"
+special "none"
+height "1pt"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-e/flames-hc-ward-1.0.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flames ( Hierarchical clustering )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Analysis of D31 dataset
+\end_layout
+
+\begin_layout Subsection*
+K-means
+\end_layout
+
+\begin_layout Standard
+The performance of K-means is tabulated below.
+ We can observe that K-means successfully identifies the 
+\begin_inset Formula $32$
+\end_inset
+
+ clusters for 
+\begin_inset Formula $k=32$
+\end_inset
+
+ with a cluster-purity of 
+\begin_inset Formula $0.97548$
+\end_inset
+
+.
+ The purity increases as we increase 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ But, it saturates for large 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ For instance, beyond 
+\begin_inset Formula $k=96$
+\end_inset
+
+, the value of cluster-purity remains almost constant around 
+\begin_inset Formula $0.97$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variation of cluster-purity with k
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+No.
+ of clusters 
+\begin_inset Formula $k$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cluster purity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25806
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.51419
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.76419
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.97548
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.95968
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.95709
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.96516
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+128
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.96322
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+192
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.96774
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.96806
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+384
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.97387
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.97709
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The result obtained for 
+\begin_inset Formula $k=32$
+\end_inset
+
+ is shown below.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-f/d31-kmeans-32.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+DBSCAN
+\end_layout
+
+\begin_layout Standard
+We can observe that the clusters are not well separated.
+ As a result, DBSCAN doesn't perform well.
+ I did a grid-search by varying 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $0.05$
+\end_inset
+
+ and varying 
+\begin_inset Formula $minpoints$
+\end_inset
+
+ from 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $20$
+\end_inset
+
+ in steps of 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ As the clusters overlap, the number of clusters obtained is less.
+ In all my trials, it doesn't exceed 
+\begin_inset Formula $5$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The best cluster purity obtained was 
+\begin_inset Formula $0.1622$
+\end_inset
+
+ for 
+\begin_inset Formula $\epsilon=0.05$
+\end_inset
+
+ and 
+\begin_inset Formula $minpoints=11$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-f/d31-dbs-0.05-11-0.1622.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Hierarchical clustering
+\end_layout
+
+\begin_layout Standard
+Using the Ward's linkage with 
+\begin_inset Formula $32$
+\end_inset
+
+ clusters we get a cluster-purity of 
+\begin_inset Formula $0.9632$
+\end_inset
+
+.
+ It is visualised below.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/aravind/Desktop/myproj/ml-assgts/PA3/task-f/d31-hc-ward.png
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
