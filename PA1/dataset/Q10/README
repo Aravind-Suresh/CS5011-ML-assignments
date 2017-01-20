@@ -1,0 +1,5 @@
+Dataset contains 10 subdirectories (part1, ...,part10). These correspond to the 10 partitions of the corpus which should be used in the 10-fold experiments. In each repetition, 2 parts should be reserved for testing and the other 8 should be used for training. 
+
+Each one of the 10 subdirectories contains both spam and legitimate messages, one message in each file. Files whose names have the form *spmsg*.txt are spam messages. Files whose names have the form  *legit*.txt are legitimate messages. 
+
+

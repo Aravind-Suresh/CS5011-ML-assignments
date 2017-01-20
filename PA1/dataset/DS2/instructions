@@ -1,0 +1,34 @@
+Step1: Feature Extraction
+--------------------------
+You are given a set of scene images. In this step, the requirement is to extract some features from the images that can be used as input to our LR model. 
+There are many feature extraction techniques. For this assignment, we will follow a color histogram based approach. 
+This is not the best technique for feature extraction, but most likely, the easiest. 
+    
+    How to: (matlab)
+    --------
+1. Read the image into a variable using imread(). Eg: im=imread('filename')
+2. Extract red, green and blue channels from the variable you read into in 1. The sequence is r-g-b. Eg: r=im(:,:,1)
+3. For every channel divide it into 32 bins and find frequency using imhist(). Eg. f1=imhist(r,32)
+4. Concatenate these 32 dimensional feature vectors for every channel to find a 96D vector for the whole image. (sequence r-g-b)
+5. Use this vector for carrying out the Logistic Regression 
+
+    How to: (python)
+    --------
+1. Read the data input an object:
+
+from PIL import Image
+import glob
+
+image_list = []
+for filename in glob.glob('Train/*.jpg'):
+    im=Image.open(filename)
+    data = im.getdata()
+    image_list.append(im)
+    print(data[0]) # RGB values for 0th pixel
+    print(im.size) # size of image (height, width)
+    
+2. Follow the same instructions as above with data as the image data.
+
+Note that data_students has a script for generating data out of raw images in the format expected by
+Prof Boyd's code. This script just generates data in the format described above. Students can make
+modifications if they wish to. Or use other scripts.
